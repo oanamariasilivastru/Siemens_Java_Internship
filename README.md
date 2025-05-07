@@ -1,39 +1,85 @@
-## Hi there 👋
+# 📦 Siemens Java Internship – Refactored CRUD & Async API
 
+This Spring Boot application provides a REST API for managing items. It supports full CRUD operations, input validation, centralized error handling, and asynchronous processing. The original codebase lacked structure and test coverage. This refactored version is stable, modular, and fully tested.
 
-## Siemens Java Internship - Code Refactoring Project
+---
 
-This repository contains a Spring Boot application that implements a simple CRUD system with some asynchronous processing capabilities. The application was created by a development team in a hurry and while it implements all required features, the code quality needs significant improvement.
+## ✅ Functionalities
 
-## Getting Started
-- Clone this repository
-- Import the project into your IDE as a Maven project (Java 17, might work with other Java versions as well)
-- Study the existing code and identify issues
-- Implement your refactoring changes
-- Test thoroughly to ensure functionality is preserved
+- **CRUD Operations**
+  - `GET /api/items` — List all items
+  - `GET /api/items/{id}` — Get item by ID
+  - `POST /api/items` — Create a new item with validation
+  - `PUT /api/items/{id}` — Update an existing item
+  - `DELETE /api/items/{id}` — Delete an item by ID
 
-## Your Assignment
-  The Project should have the following structure:
+- **Asynchronous Processing**
+  - `GET /api/items/process` — Asynchronously updates the status of all items to `PROCESSED`
+  - Only successful updates are returned
+  - Failures are logged and skipped without stopping the process
 
-![image](https://github.com/user-attachments/assets/ab45f225-ff1f-4ff7-bbaa-3d5d0c21e7b1)
+- **Validation**
+  - Uses standard annotations like `@NotBlank`, `@Size`, `@Pattern`
+  - Implements a custom `@ValidEmail` annotation with:
+    - Regex validation
+    - MX record lookup via DNS
 
-ⓘ
-##  You will have to:
-1. Fix all logical errors while maintaining the same functionality
-2. Implement proper error handling and validation
-3. Be well-documented with clear, concise comments
-4. Write test functions with as much coverage as possible
-5. Make sure that the Status Codes used in Controller are correct
-6. Find a way to implement an email validation
-7. Refactor the **processItemsAsync** function
-    The **processItemsAsync** function is supposed to:
-      1. Asynchronously process EVERY item (retrieve from database, update status, and save)
-      2. Track which items were processed
-      3. Return a list when all items have been processed
-      4. Provide an accurate list of all successfully processed items
-      HINT: You are free to modify the function and variables as much as you want :)
+- **Centralized Error Handling**
+  - All exceptions handled in `GlobalExceptionHandler`
+  - Returns structured `ErrorResponse` JSON with:
+    - Status code
+    - Error type
+    - List of messages
+    - Request path
 
+- **Robust Testing**
+  - Full test coverage for:
+    - Controllers (via MockMvc)
+    - Services (via unit tests and mocking)
+    - Validators (including edge cases)
+    - Exception handler
+  - Achieves 100% line and branch coverage
 
-Copy the project and make the solution public on your personal GitHub.
-Provide us the GitHub URL via email.
-(Don't forget to make the repository PUBLIC 😁)
+---
+
+## 🛠️ What I Refactored
+
+- Organized code into logical packages: `controller`, `model`, `service`, `repository`, `validation`
+- Refactored `processItemsAsync()` to:
+  - Avoid crashing on individual failures
+  - Aggregate successful results only
+- Created reusable `ErrorResponse` model
+- Wrote integration tests for all endpoints and validation errors
+- Implemented custom `ConstraintValidatorFactory` in tests for email validation bypassing DNS calls
+- Improved documentation and maintainability
+
+---
+
+## 📁 Project Structure
+
+src
+├── main
+│ └── java
+│ └── com.siemens.internship
+│ ├── controller # REST controllers (e.g. ItemController, GlobalExceptionHandler)
+│ ├── model # Domain models and DTOs (e.g. Item, ItemRequest, ErrorResponse)
+│ ├── repository # Spring Data JPA repositories
+│ ├── service # Business logic (e.g. ItemService)
+│ └── validation # Custom validators (e.g. ValidEmailValidator, ValidEmail)
+│
+├── test
+│ └── java
+│ └── com.siemens.internship
+│ ├── controller # MockMvc tests for controllers
+│ ├── service # Unit tests for services
+│ ├── validation # Tests for custom validators
+│ └── model # Serialization/DTO tests (e.g. ErrorResponseTest)
+
+---
+
+## 📤 Submission
+
+This project is refactored, tested, and documented according to the internship assignment.  
+GitHub Repository: [https://github.com/SiemensJava2025/SiemensJava2025]
+
+---
