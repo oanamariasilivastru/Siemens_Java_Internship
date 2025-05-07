@@ -24,7 +24,7 @@ This Spring Boot application provides a REST API for managing items. It supports
     - Regex validation
     - MX record lookup via DNS
 
-- **Centralized Error Handling**
+- **Error Handling**
   - All exceptions handled in `GlobalExceptionHandler`
   - Returns structured `ErrorResponse` JSON with:
     - Status code
@@ -32,7 +32,7 @@ This Spring Boot application provides a REST API for managing items. It supports
     - List of messages
     - Request path
 
-- **Robust Testing**
+- **Testing**
   - Full test coverage for:
     - Controllers (via MockMvc)
     - Services (via unit tests and mocking)
