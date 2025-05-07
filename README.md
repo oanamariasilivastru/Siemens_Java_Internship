@@ -44,7 +44,7 @@ This Spring Boot application provides a REST API for managing items. It supports
 
 ## 🛠️ What I Refactored
 
-- Organized code into logical packages: `controller`, `model`, `service`, `repository`, `validation`
+- Organized code into logical packages: `controller`, `model`, `service`, `repository`
 - Refactored `processItemsAsync()` to:
   - Avoid crashing on individual failures
   - Aggregate successful results only
@@ -54,30 +54,6 @@ This Spring Boot application provides a REST API for managing items. It supports
 - Improved documentation and maintainability
 
 ---
-
-## 📁 Project Structure
-
-src
-├── main
-│ └── java
-│ └── com.siemens.internship
-│ ├── controller # REST controllers (e.g. ItemController, GlobalExceptionHandler)
-│ ├── model # Domain models and DTOs (e.g. Item, ItemRequest, ErrorResponse)
-│ ├── repository # Spring Data JPA repositories
-│ ├── service # Business logic (e.g. ItemService)
-│ └── validation # Custom validators (e.g. ValidEmailValidator, ValidEmail)
-│
-├── test
-│ └── java
-│ └── com.siemens.internship
-│ ├── controller # MockMvc tests for controllers
-│ ├── service # Unit tests for services
-│ ├── validation # Tests for custom validators
-│ └── model # Serialization/DTO tests (e.g. ErrorResponseTest)
-
----
-
-## 📤 Submission
 
 This project is refactored, tested, and documented according to the internship assignment.  
 GitHub Repository: [https://github.com/SiemensJava2025/SiemensJava2025]
