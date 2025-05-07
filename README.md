@@ -1,4 +1,4 @@
-# 📦 Siemens Java Internship – Refactored CRUD & Async API
+# 📦 Siemens Java Internship
 
 This Spring Boot application provides a REST API for managing items. It supports full CRUD operations, input validation, centralized error handling, and asynchronous processing. The original codebase lacked structure and test coverage. This refactored version is stable, modular, and fully tested.
 
